@@ -14,7 +14,7 @@ public class MainActivityTest extends
 		super(MainActivity.class);
 	}
 
-	public void testPreferenceIsSaved() throws Exception {
+	public void testEntryTextViewText() throws Exception {
 		MainActivity activity = getActivity();
 		TextView view = (TextView) activity.findViewById(R.id.hello);
 		assertEquals("Hello world! Ronualdo", view.getText());

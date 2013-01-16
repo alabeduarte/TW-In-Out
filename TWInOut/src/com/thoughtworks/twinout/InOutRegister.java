@@ -2,12 +2,17 @@ package com.thoughtworks.twinout;
 
 import java.util.Date;
 
-import android.content.Context;
+import com.thoughtworks.twinout.db.DBHelper;
+import com.thoughtworks.twinout.db.DateTimeDataSource;
 
 public class InOutRegister {
 
-	public static boolean registerInAt(Context context, Date currentDate) {
-		DBHelper dbHelper = new DBHelper(context);
-		return dbHelper.save(currentDate);
+	private DateTimeDataSource dataSource;
+	
+	public InOutRegister(DBHelper dbHelper) {
+		this.dataSource = new DateTimeDataSource(dbHelper);
+	}
+	public boolean registerInAt(Date currentDate) {
+		return dataSource.save(currentDate);
 	}
 }
