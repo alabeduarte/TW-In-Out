@@ -20,3 +20,13 @@ local.properties
 
 TWInOutTest/bin/
 TWInOut/bin/
+
+TWInOut/*.classpath
+TWInOut/*.project
+TWInOut/.settings
+TWInOut/classes/**/*.class
+
+TWInOutTest/*.classpath
+TWInOutTest/*.project
+TWInOutTest/.settings
+TWInOutTest/classes/**/*.class
