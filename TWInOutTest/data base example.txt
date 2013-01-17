@@ -1,0 +1,11 @@
+		{ day: 01/01/2013 day_id: 1
+			dateTimes: 
+			{
+				day_id 1 - dateTimeIn: 08:00 - dateTimeOut: 10:00 - 2
+				day_id 1 - dateTimeIn: 11:00 - dateTimeOut: 12:00 - 1
+				day_id 1 - dateTimeIn: 13:00 - dateTimeOut: 15:00 - 2
+				day_id 1 - dateTimeIn: 19:00 - dateTimeOut: 23:00 - 4
+				9hs 1hora extra
+			}
+		}
+		
