@@ -17,16 +17,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
-		database.execSQL(DateTimeDataSource.createTable());
+		Schema.create(database);
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 		Log.w(DBHelper.class.getName(), "Upgrading database from version "
 				+ oldVersion + " to " + newVersion
 				+ ", which will destroy all old data");
-		db.execSQL(DateTimeDataSource.dropTable());
-		onCreate(db);
+		Schema.dropAll(database);
+		onCreate(database);
 	}
 
 	public SQLiteDatabase open() throws SQLException {

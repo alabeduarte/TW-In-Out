@@ -10,29 +10,16 @@ import android.database.sqlite.SQLiteDatabase;
 import com.thoughtworks.twinout.Util;
 
 public class DateTimeDataSource {
-	private static final String COLUMN_ID = "_id";
-	private static final String COLUMN_DATE_TIME = "_date_time";
-	private static final String TABLE_DATE_TIME = "date_times";
+	public static final String TABLE_DATE_TIME = "date_times";
+	public static final String COLUMN_ID = "_id";
+	public static final String COLUMN_DATE_TIME = "_date_time";
 	private static String[] ALL_COLUMNS = { COLUMN_ID, COLUMN_DATE_TIME };
-	// Database creation sql statement
-	private static final String DATABASE_CREATE = "create table "
-			+ TABLE_DATE_TIME + "(" + COLUMN_ID
-			+ " integer primary key autoincrement, " + COLUMN_DATE_TIME
-			+ " text not null);";
 
 	private DBHelper dbHelper;
 	private SQLiteDatabase database;
 
 	public DateTimeDataSource(DBHelper dbHelper) {
 		this.dbHelper = dbHelper;
-	}
-	
-	public static String createTable() {
-		return DATABASE_CREATE;
-	}
-	
-	public static String dropTable() {
-		return "DROP TABLE IF EXISTS " + TABLE_DATE_TIME;
 	}
 	
 	public Date getLastInDate() {
