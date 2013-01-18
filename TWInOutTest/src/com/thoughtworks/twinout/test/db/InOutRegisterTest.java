@@ -14,11 +14,8 @@ import com.thoughtworks.twinout.db.DateTimeDataSource;
 
 public class InOutRegisterTest extends AndroidTestCase {
 	
-	public void testINRegister() throws Exception {
-		
-		DateTimeDataSource dataSource = mock(DateTimeDataSource.class);
-		Date anyDate = (Date) anyObject();
-		when(dataSource.save(anyDate)).thenReturn(true);
+	public void testFirstIn() throws Exception {
+		DateTimeDataSource dataSource = createDataSourceMock();
 		
 		Date currentDate = Calendar.getInstance().getTime();
 		InOutRegister register = new InOutRegister(dataSource);
@@ -27,5 +24,22 @@ public class InOutRegisterTest extends AndroidTestCase {
 		
 		assertTrue(success);
 	}
-	
+
+	public void testFirstOut() throws Exception {
+		DateTimeDataSource dataSource = createDataSourceMock();
+		
+		Date currentDate = Calendar.getInstance().getTime();
+		InOutRegister register = new InOutRegister(dataSource);
+		
+		boolean success = register.registerOutAt(currentDate);
+		
+		assertTrue(success);
+	}
+
+	private DateTimeDataSource createDataSourceMock() {
+		DateTimeDataSource dataSource = mock(DateTimeDataSource.class);
+		Date anyDate = (Date) anyObject();
+		when(dataSource.save(anyDate)).thenReturn(true);
+		return dataSource;
+	}
 }

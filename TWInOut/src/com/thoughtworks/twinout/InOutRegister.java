@@ -14,4 +14,7 @@ public class InOutRegister {
 	public boolean registerInAt(Date currentDate) {
 		return dataSource.save(currentDate);
 	}
+	public boolean registerOutAt(Date currentDate) {
+		return dataSource.save(currentDate);
+	}
 }
