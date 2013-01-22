@@ -2,19 +2,19 @@ package com.thoughtworks.twinout;
 
 import java.util.Date;
 
-import com.thoughtworks.twinout.db.DateTimeDataSource;
+import com.thoughtworks.twinout.db.TimeCardDataSource;
 
 public class InOutRegister {
 
-	private DateTimeDataSource dataSource;
+	private TimeCardDataSource dataSource;
 	
-	public InOutRegister(DateTimeDataSource dataSource) {
+	public InOutRegister(TimeCardDataSource dataSource) {
 		this.dataSource = dataSource;
 	}
-	public boolean registerInAt(Date currentDate) {
-		return dataSource.save(currentDate);
+	public TimeCard registerInAt(Date currentDate) {
+		return dataSource.save(currentDate, TimeCardType.IN);
 	}
-	public boolean registerOutAt(Date currentDate) {
-		return dataSource.save(currentDate);
+	public TimeCard registerOutAt(Date currentDate) {
+		return dataSource.save(currentDate, TimeCardType.OUT);
 	}
 }

@@ -5,16 +5,18 @@ import java.util.Date;
 
 import android.test.AndroidTestCase;
 
-import com.thoughtworks.twinout.db.DateTimeDataSource;
+import com.thoughtworks.twinout.TimeCard;
+import com.thoughtworks.twinout.TimeCardType;
+import com.thoughtworks.twinout.db.TimeCardDataSource;
 
 public class DateTimeDatasourceTest extends AndroidTestCase{
 
-	DateTimeDataSource dataSource;
+	TimeCardDataSource dataSource;
 	
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		dataSource = new DateTimeDataSource(getContext());
+		dataSource = new TimeCardDataSource(getContext());
 		dataSource.open();
 	}
 	
@@ -24,13 +26,13 @@ public class DateTimeDatasourceTest extends AndroidTestCase{
 		dataSource.close();
 	}
 	
-	public void testShouldSave() {
+	public void testShouldSaveIn() {
 		Date currentDate = Calendar.getInstance().getTime();
 		
-		dataSource.save(currentDate);
-		Date inDate = dataSource.getLastInDate();
+		TimeCard timeCard = dataSource.save(currentDate, TimeCardType.IN);
+		TimeCard timeCardSaved = dataSource.getLastInDate();
 		
-		assertEquals(currentDate.toString(), inDate.toString());
+		assertTrue(timeCardSaved.equals(timeCard));
 	}
 	
 }

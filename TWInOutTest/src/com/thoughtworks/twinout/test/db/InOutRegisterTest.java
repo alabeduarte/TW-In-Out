@@ -10,36 +10,37 @@ import java.util.Date;
 import android.test.AndroidTestCase;
 
 import com.thoughtworks.twinout.InOutRegister;
-import com.thoughtworks.twinout.db.DateTimeDataSource;
+import com.thoughtworks.twinout.TimeCard;
+import com.thoughtworks.twinout.TimeCardType;
+import com.thoughtworks.twinout.db.TimeCardDataSource;
 
 public class InOutRegisterTest extends AndroidTestCase {
 	
 	public void testFirstIn() throws Exception {
-		DateTimeDataSource dataSource = createDataSourceMock();
+		TimeCardDataSource dataSource = createDataSourceMock();
 		
 		Date currentDate = Calendar.getInstance().getTime();
 		InOutRegister register = new InOutRegister(dataSource);
 		
-		boolean success = register.registerInAt(currentDate);
+		TimeCard timeCard = register.registerInAt(currentDate);
 		
-		assertTrue(success);
+		assertNotNull(timeCard);
 	}
 
 	public void testFirstOut() throws Exception {
-		DateTimeDataSource dataSource = createDataSourceMock();
+		TimeCardDataSource dataSource = createDataSourceMock();
 		
 		Date currentDate = Calendar.getInstance().getTime();
 		InOutRegister register = new InOutRegister(dataSource);
 		
-		boolean success = register.registerOutAt(currentDate);
+		TimeCard timeCard = register.registerOutAt(currentDate);
 		
-		assertTrue(success);
+		assertNotNull(timeCard);
 	}
 
-	private DateTimeDataSource createDataSourceMock() {
-		DateTimeDataSource dataSource = mock(DateTimeDataSource.class);
-		Date anyDate = (Date) anyObject();
-		when(dataSource.save(anyDate)).thenReturn(true);
+	private TimeCardDataSource createDataSourceMock() {
+		TimeCardDataSource dataSource = mock(TimeCardDataSource.class);
+		when(dataSource.save((Date) anyObject(), (TimeCardType) anyObject())).thenReturn(new TimeCard());
 		return dataSource;
 	}
 }
