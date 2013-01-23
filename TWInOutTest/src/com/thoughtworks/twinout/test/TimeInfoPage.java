@@ -1,8 +1,12 @@
 package com.thoughtworks.twinout.test;
 
+import java.util.Date;
+
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+
+import com.thoughtworks.twinout.Util;
 
 public class TimeInfoPage {
 
@@ -28,5 +32,12 @@ public class TimeInfoPage {
 		return timePicker;
 	}
 	
+	public Date getInputDate() {
+		return Util.parse(datePicker.getYear()
+				+ datePicker.getMonth()
+				+ datePicker.getDayOfMonth() + " "
+				+ timePicker.getCurrentHour()
+				+ timePicker.getCurrentMinute());
+	}
 	
 }

@@ -6,7 +6,7 @@ import java.util.Date;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
-import android.test.InstrumentationTestCase;
+import android.test.ActivityInstrumentationTestCase2;
 import android.test.TouchUtils;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +21,7 @@ import com.thoughtworks.twinout.TimeInfoActivity;
 import com.thoughtworks.twinout.Util;
 import com.thoughtworks.twinout.db.TimeCardDataSource;
 
-public class MainActivityTestTransition extends InstrumentationTestCase {
+public class TimeInfoActivityTest extends ActivityInstrumentationTestCase2<TimeInfoActivity> {
 
 	private Instrumentation instrumentation;
 	private TimeCardDataSource dataSource;
@@ -40,35 +40,32 @@ public class MainActivityTestTransition extends InstrumentationTestCase {
 		dataSource.deleteAll();
 		dataSource.close();
 	}
+	
+	public TimeInfoActivityTest(Class<TimeInfoActivity> activityClass) {
+		super(activityClass);
+	}
 
-	public void testTransitionOfFirstScreenToConfirmationScreen()
-			throws Exception {
+	public void testTransitionOfFirstScreenToConfirmationScreen() throws Exception {
 		TimeInfoPage timeInfoPage = goToTimeInfoPage();
 		assertNotNull(timeInfoPage.getButtonConfirmation());
 		assertNotNull(timeInfoPage.getDatePicker());
 		assertNotNull(timeInfoPage.getTimePicker());
-
 	}
 
-//	public void testShouldAddNewTimeCard() {
-//		TimeInfoPage timeInfoPage = goToTimeInfoPage();
-//
-//		timeInfoPage.getDatePicker().init(2013, Calendar.JANUARY, 2, null);
-//		timeInfoPage.getTimePicker().setCurrentHour(9);
-//		timeInfoPage.getTimePicker().setCurrentMinute(0);
-//
-//		TouchUtils.clickView(this, timeInfoPage.getButtonConfirmation());
-//
-//		TimeCard timeCard = dataSource.getLastInDate();
-//
-//		Date expectedDate = Util.parse(timeInfoPage.getDatePicker().getYear()
-//				+ timeInfoPage.getDatePicker().getMonth()
-//				+ timeInfoPage.getDatePicker().getDayOfMonth() + " "
-//				+ timeInfoPage.getTimePicker().getCurrentHour()
-//				+ timeInfoPage.getTimePicker().getCurrentMinute());
-//		assertEquals(expectedDate, timeCard.getDateTime());
-//		assertEquals(TimeCardType.IN, timeCard.getType());
-//	}
+	public void testShouldAddNewTimeCard() {
+		TimeInfoPage timeInfoPage = goToTimeInfoPage();
+
+		timeInfoPage.getDatePicker().init(2013, Calendar.JANUARY, 2, null);
+		timeInfoPage.getTimePicker().setCurrentHour(9);
+		timeInfoPage.getTimePicker().setCurrentMinute(0);
+
+		TouchUtils.clickView(this, timeInfoPage.getButtonConfirmation());
+
+		TimeCard timeCard = dataSource.getLastInDate();
+
+		assertEquals(timeInfoPage.getInputDate(), timeCard.getDateTime());
+		assertEquals(TimeCardType.IN, timeCard.getType());
+	}
 
 	private TimeInfoPage goToTimeInfoPage() {
 		Instrumentation.ActivityMonitor monitor = createMonitor(MainActivity.class);
@@ -85,13 +82,11 @@ public class MainActivityTestTransition extends InstrumentationTestCase {
 
 		currentActivity = getCurrentActivity(monitor);
 
-		Button confirmButton = (Button) currentActivity
-				.findViewById(R.id.buttonConfirm);
-		DatePicker datePicker = (DatePicker) currentActivity
-				.findViewById(R.id.datePicker);
-		TimePicker timePicker = (TimePicker) currentActivity
-				.findViewById(R.id.timePicker);
+		Button confirmButton = (Button) currentActivity.findViewById(R.id.buttonConfirm);
+		DatePicker datePicker = (DatePicker) currentActivity.findViewById(R.id.datePicker);
+		TimePicker timePicker = (TimePicker) currentActivity.findViewById(R.id.timePicker);
 
+		currentActivity.finish();
 		return new TimeInfoPage(confirmButton, datePicker, timePicker);
 	}
 
@@ -102,8 +97,7 @@ public class MainActivityTestTransition extends InstrumentationTestCase {
 	private void startActivitySync() {
 		Intent intent = new Intent(Intent.ACTION_MAIN);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.setClassName(instrumentation.getTargetContext(),
-				MainActivity.class.getName());
+		intent.setClassName(instrumentation.getTargetContext(), MainActivity.class.getName());
 		instrumentation.startActivitySync(intent);
 	}
 
@@ -116,9 +110,7 @@ public class MainActivityTestTransition extends InstrumentationTestCase {
 		instrumentation.removeMonitor(monitor);
 	}
 
-	private Instrumentation.ActivityMonitor changeMonitor(
-			Instrumentation.ActivityMonitor monitor,
-			Class<? extends Activity> clazz) {
+	private Instrumentation.ActivityMonitor changeMonitor(Instrumentation.ActivityMonitor monitor, Class<? extends Activity> clazz) {
 		removeMonitor(monitor);
 		return createMonitor(clazz);
 	}
