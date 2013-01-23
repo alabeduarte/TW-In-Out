@@ -7,7 +7,7 @@ import java.util.Locale;
 
 public class Util {
 
-	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyyMMdd HHmmss", Locale.US);
+	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyyMMdd HHmm", Locale.US);
 
 	public static String format(Date date) {
 		SimpleDateFormat formatedDate = SIMPLE_DATE_FORMAT;
@@ -18,7 +18,7 @@ public class Util {
 		Date result = null;
 		SimpleDateFormat formatedDate = SIMPLE_DATE_FORMAT;
 		try {
-			formatedDate.parse(date);
+			result = formatedDate.parse(date);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

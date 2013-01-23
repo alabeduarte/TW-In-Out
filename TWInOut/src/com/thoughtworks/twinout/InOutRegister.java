@@ -12,9 +12,20 @@ public class InOutRegister {
 		this.dataSource = dataSource;
 	}
 	public TimeCard registerInAt(Date currentDate) {
-		return dataSource.save(currentDate, TimeCardType.IN);
-	}
+		return register(currentDate, TimeCardType.IN, TimeCardType.OUT);	}
+	
 	public TimeCard registerOutAt(Date currentDate) {
-		return dataSource.save(currentDate, TimeCardType.OUT);
+		return register(currentDate, TimeCardType.OUT, TimeCardType.IN);
+	}
+	
+	private TimeCard register(Date currentDate, TimeCardType typeToSave, TimeCardType typeToCompare) {
+		TimeCard result = null;
+		
+		TimeCard lastCard = dataSource.getLastInDate();
+		if (lastCard == null || typeToCompare.equals(lastCard.getType())) {
+			TimeCard timeCard = new TimeCard(null, currentDate, typeToSave);
+			result = dataSource.save(timeCard);
+		}
+		return result;
 	}
 }

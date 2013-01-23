@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.thoughtworks.twinout.TimeInfoActivity"
+            android:label="@string/title_activity_time_info"
+            android:parentActivityName="com.thoughtworks.twinout.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.thoughtworks.twinout.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

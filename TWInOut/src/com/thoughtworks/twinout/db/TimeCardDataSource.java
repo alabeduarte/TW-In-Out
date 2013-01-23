@@ -35,6 +35,14 @@ public class TimeCardDataSource {
 				null, null, null, null, Schema.COLUMN_DATE_TIME + " DESC");
 
 		cursor.moveToFirst();
+		timeCard = extractTimeCard(cursor);
+
+		cursor.close();
+		return timeCard;
+	}
+
+	private TimeCard extractTimeCard(Cursor cursor) {
+		TimeCard timeCard = null;
 		
 		Long id = cursor.getLong(0);
 		String dateString = cursor.getString(1);
@@ -44,18 +52,12 @@ public class TimeCardDataSource {
 		date = Util.parse(dateString);
 		
 		timeCard = new TimeCard(id, date, TimeCardType.getType(type));
-		// Make sure to close the cursor
-		cursor.close();
 		return timeCard;
 	}
 
-	public TimeCard save(Date currentDate, TimeCardType type) {
+	public TimeCard save(TimeCard timeCard) {
 		
-		String formatedDate = Util.format(currentDate);
-		
-		TimeCard timeCard = new TimeCard();
-		timeCard.setDateTime(Util.parse(formatedDate));
-		timeCard.setType(type);
+		String formatedDate = Util.format(timeCard.getDateTime());
 		
 		ContentValues values = new ContentValues();
 
@@ -64,5 +66,9 @@ public class TimeCardDataSource {
 		timeCard.setId(database.insert(Schema.TABLE_TIME_CARD, null, values));
 
 		return timeCard;
+	}
+	
+	public void deleteAll(){
+		database.delete(Schema.TABLE_TIME_CARD, null, null);
 	}
 }

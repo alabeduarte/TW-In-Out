@@ -7,34 +7,31 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 public class TimeCard {
 
-	private long id;
+	private Long id;
 	private Date dateTime;
 	private TimeCardType type;
 
 	public TimeCard() {
 	}
 
-	public TimeCard(long id, Date dateTime, TimeCardType type) {
+	public TimeCard(Long id, Date dateTime, TimeCardType type) {
 		this.id = id;
-		this.dateTime = dateTime;
+		//Removing the miliseconds
+		this.dateTime = Util.parse(Util.format(dateTime));
 		this.type = type;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
 
 	public Date getDateTime() {
 		return dateTime;
-	}
-
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
 	}
 
 	public TimeCardType getType() {
@@ -65,5 +62,11 @@ public class TimeCard {
 	@Override
 	public int hashCode() {
 		return HashCodeBuilder.reflectionHashCode(this);
+	}
+	
+	@Override
+	public String toString() {
+		
+		return "Id -> " + id + "\tDateTime -> " + dateTime + "\tType -> " + type;
 	}
 }

@@ -2,11 +2,11 @@
 <resources>
 
     <string name="app_name">TW in out</string>
-    <string name="hello_world">Hello world! Ronualdo</string>
     <string name="menu_settings">Settings</string>
-    <string name="inButton">IN!!</string>
-    <string name="outButton">Im OUT!!</string>
-    <string name="imIn">Im IN!!</string>
-    <string name="imOut">Im OUT!!!</string>
+    <string name="label_button_in">IN</string>
+    <string name="label_button_out">OUT</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_time_info">TimeInfoActivity</string>
+    <string name="confirm">Confirm?</string>
 
 </resources>

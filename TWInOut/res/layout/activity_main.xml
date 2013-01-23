@@ -5,19 +5,11 @@
     tools:context=".MainActivity" >
 
     <Button
-        android:id="@+id/inButton"
+        android:id="@+id/buttonIn"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_weight="0.5"
         android:gravity="center"
-        android:text="@string/imIn" />
-
-    <Button
-        android:id="@+id/outButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:gravity="center"
-        android:text="@string/imOut" />
+        android:text="@string/label_button_in" />
 
 </LinearLayout>

@@ -37,10 +37,55 @@ public class InOutRegisterTest extends AndroidTestCase {
 		
 		assertNotNull(timeCard);
 	}
+	
+	public void testCantSaveDoubleIn() {
+		TimeCardDataSource dataSource = createDataSourceMockDoubleInOut(TimeCardType.IN);
+		Calendar calendar = Calendar.getInstance();
+		Date inDate1 = calendar.getTime();
+		
+		calendar.add(Calendar.MINUTE, 1);
+		Date inDate2 = calendar.getTime();
+		
+		InOutRegister register = new InOutRegister(dataSource);
+		
+		TimeCard firstTimeCard = register.registerInAt(inDate1);
+		TimeCard secondTimeCard = register.registerInAt(inDate2);
+		
+		assertNotNull(firstTimeCard);
+		assertNull(secondTimeCard);
+		
+	}
+
+	public void testCantSaveDoubleOut() {
+		TimeCardDataSource dataSource = createDataSourceMockDoubleInOut(TimeCardType.OUT);
+		Calendar calendar = Calendar.getInstance();
+		Date inDate1 = calendar.getTime();
+		
+		calendar.add(Calendar.MINUTE, 1);
+		Date inDate2 = calendar.getTime();
+		
+		InOutRegister register = new InOutRegister(dataSource);
+		
+		TimeCard firstTimeCard = register.registerOutAt(inDate1);
+		TimeCard secondTimeCard = register.registerOutAt(inDate2);
+		
+		assertNotNull(firstTimeCard);
+		assertNull(secondTimeCard);
+	}
 
 	private TimeCardDataSource createDataSourceMock() {
 		TimeCardDataSource dataSource = mock(TimeCardDataSource.class);
-		when(dataSource.save((Date) anyObject(), (TimeCardType) anyObject())).thenReturn(new TimeCard());
+		when(dataSource.save((TimeCard) anyObject())).thenReturn(new TimeCard());
+		return dataSource;
+	}
+
+	private TimeCardDataSource createDataSourceMockDoubleInOut(TimeCardType timeCardType) {
+		TimeCardDataSource dataSource = mock(TimeCardDataSource.class);
+		
+		TimeCard timeCard = new TimeCard(1L, new Date(), timeCardType);
+		
+		when(dataSource.getLastInDate()).thenReturn(null).thenReturn(timeCard);
+		when(dataSource.save((TimeCard) anyObject())).thenReturn(new TimeCard());
 		return dataSource;
 	}
 }

@@ -1,8 +1,10 @@
 package com.thoughtworks.twinout.test;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.widget.Button;
 
 import com.thoughtworks.twinout.MainActivity;
+import com.thoughtworks.twinout.R;
 
 public class MainActivityTest extends
 		ActivityInstrumentationTestCase2<MainActivity> {
@@ -11,17 +13,11 @@ public class MainActivityTest extends
 		super(MainActivity.class);
 	}
 
-//	public void testEntryTextViewText() throws Exception {
-//		MainActivity activity = getActivity();
-//		TextView view = (TextView) activity.findViewById(R.id.hello);
-//		assertEquals("Hello world! Ronualdo", view.getText());
-//	}
-//	
-//	public void testEntryButtonName() throws Exception {
-//		MainActivity activity = getActivity();
-//		Button button= (Button) activity.findViewById(R.id.buttonImIn);
-//		assertEquals("Im In!", button.getText());
-//	}
+	public void testEntryButtonName() throws Exception {
+		MainActivity activity = getActivity();
+		Button button= (Button) activity.findViewById(R.id.buttonIn);
+		assertEquals("IN", button.getText());
+	}
 	
 	// public void testRegisteringIN() throws Exception {
 	// Button button = (Button)activity.findViewById(R.id.inButton);

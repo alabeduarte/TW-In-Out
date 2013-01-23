@@ -11,7 +11,7 @@ import com.thoughtworks.twinout.db.TimeCardDataSource;
 
 public class DateTimeDatasourceTest extends AndroidTestCase{
 
-	TimeCardDataSource dataSource;
+	private TimeCardDataSource dataSource;
 	
 	@Override
 	protected void setUp() throws Exception {
@@ -23,16 +23,30 @@ public class DateTimeDatasourceTest extends AndroidTestCase{
 	@Override
 	protected void tearDown() throws Exception {
 		super.tearDown();
+		dataSource.deleteAll();
 		dataSource.close();
 	}
 	
 	public void testShouldSaveIn() {
 		Date currentDate = Calendar.getInstance().getTime();
 		
-		TimeCard timeCard = dataSource.save(currentDate, TimeCardType.IN);
+		TimeCard timeCard = new TimeCard(null, currentDate, TimeCardType.IN);
+
+		timeCard = dataSource.save(timeCard);
 		TimeCard timeCardSaved = dataSource.getLastInDate();
 		
-		assertTrue(timeCardSaved.equals(timeCard));
+		assertEquals(timeCardSaved, timeCard);
+	}
+	
+	public void testShouldSaveOut(){
+		Date currentDate = Calendar.getInstance().getTime();
+		
+		TimeCard timeCard = new TimeCard(null, currentDate, TimeCardType.OUT);
+		
+		timeCard = dataSource.save(timeCard);
+		TimeCard timeCardSaved = dataSource.getLastInDate();
+		
+		assertEquals(timeCardSaved, timeCard);
 	}
 	
 }
