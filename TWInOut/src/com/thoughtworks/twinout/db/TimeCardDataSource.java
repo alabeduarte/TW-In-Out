@@ -30,12 +30,14 @@ public class TimeCardDataSource {
 	}
 	
 	public TimeCard getLastInDate() {
-		TimeCard timeCard;
+		TimeCard timeCard = null;
 		Cursor cursor = database.query(Schema.TABLE_TIME_CARD, ALL_COLUMNS,
 				null, null, null, null, Schema.COLUMN_DATE_TIME + " DESC");
 
-		cursor.moveToFirst();
-		timeCard = extractTimeCard(cursor);
+		if (!cursor.isAfterLast()) {
+			cursor.moveToFirst();
+			timeCard = extractTimeCard(cursor);
+		}
 
 		cursor.close();
 		return timeCard;
