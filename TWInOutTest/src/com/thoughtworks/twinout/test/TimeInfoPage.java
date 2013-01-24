@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
-import com.thoughtworks.twinout.Util;
+import com.thoughtworks.twinout.ViewHelper;
 
 public class TimeInfoPage {
 
@@ -33,11 +33,7 @@ public class TimeInfoPage {
 	}
 	
 	public Date getInputDate() {
-		return Util.parse(datePicker.getYear()
-				+ datePicker.getMonth()
-				+ datePicker.getDayOfMonth() + " "
-				+ timePicker.getCurrentHour()
-				+ timePicker.getCurrentMinute());
+		return ViewHelper.getInputDate(datePicker, timePicker);
 	}
 	
 }

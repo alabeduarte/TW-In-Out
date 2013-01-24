@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Util {
+public class Parser {
 
 	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("yyyyMMdd HHmm", Locale.US);
 
@@ -25,4 +25,6 @@ public class Util {
 		
 		return result;
 	}
+	
+	
 }

@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.thoughtworks.twinout.TimeCard;
 import com.thoughtworks.twinout.TimeCardType;
-import com.thoughtworks.twinout.Util;
+import com.thoughtworks.twinout.Parser;
 
 public class TimeCardDataSource {
 	private static String[] ALL_COLUMNS = { Schema.COLUMN_ID, Schema.COLUMN_DATE_TIME, Schema.COLUMN_TYPE };
@@ -51,7 +51,7 @@ public class TimeCardDataSource {
 		int type = cursor.getInt(2);
 		
 		Date date = null;
-		date = Util.parse(dateString);
+		date = Parser.parse(dateString);
 		
 		timeCard = new TimeCard(id, date, TimeCardType.getType(type));
 		return timeCard;
@@ -59,7 +59,7 @@ public class TimeCardDataSource {
 
 	public TimeCard save(TimeCard timeCard) {
 		
-		String formatedDate = Util.format(timeCard.getDateTime());
+		String formatedDate = Parser.format(timeCard.getDateTime());
 		
 		ContentValues values = new ContentValues();
 

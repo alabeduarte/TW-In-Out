@@ -17,7 +17,7 @@ public class TimeCard {
 	public TimeCard(Long id, Date dateTime, TimeCardType type) {
 		this.id = id;
 		//Removing the miliseconds
-		this.dateTime = Util.parse(Util.format(dateTime));
+		this.dateTime = Parser.parse(Parser.format(dateTime));
 		this.type = type;
 	}
 

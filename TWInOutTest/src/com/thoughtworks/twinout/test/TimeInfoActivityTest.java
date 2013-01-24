@@ -13,6 +13,7 @@ import android.widget.TimePicker;
 import com.thoughtworks.twinout.MainActivity;
 import com.thoughtworks.twinout.R;
 import com.thoughtworks.twinout.TimeCard;
+import com.thoughtworks.twinout.TimeCardType;
 import com.thoughtworks.twinout.TimeInfoActivity;
 import com.thoughtworks.twinout.db.TimeCardDataSource;
 
@@ -61,9 +62,9 @@ public class TimeInfoActivityTest extends ActivityInstrumentationTestCase2<TimeI
 
 		TimeCard timeCard = dataSource.getLastInDate();
 
-		assertNull(timeCard);
-//		assertEquals(timeInfoPage.getInputDate(), timeCard.getDateTime());
-//		assertEquals(TimeCardType.IN, timeCard.getType());
+		assertNotNull(timeCard);
+		assertEquals(timeInfoPage.getInputDate(), timeCard.getDateTime());
+		assertEquals(TimeCardType.IN, timeCard.getType());
 	}
 
 	private void setToMainActivity() {

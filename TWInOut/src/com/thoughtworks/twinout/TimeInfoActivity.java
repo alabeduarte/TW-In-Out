@@ -1,14 +1,50 @@
 package com.thoughtworks.twinout;
 
+import com.thoughtworks.twinout.db.TimeCardDataSource;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TimePicker;
 
-public class TimeInfoActivity extends Activity {
+public class TimeInfoActivity extends Activity implements OnClickListener {
 
+	private TimeCardDataSource dataSource;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_time_info); 
+		
+		dataSource = new TimeCardDataSource(this);
+		dataSource.open();
+		
+		Button buttonConfirm = (Button) findViewById(R.id.buttonConfirm);
+		buttonConfirm.setOnClickListener(this);
 	}
 
+	@Override
+	public void onClick(View v) {
+		InOutRegister register = new InOutRegister(dataSource);
+		
+		DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+		TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
+		
+		register.registerInAt(ViewHelper.getInputDate(datePicker, timePicker));
+		
+	}
+
+	@Override
+	protected void onResume() {
+		dataSource.open();
+		super.onResume();
+	}
+	
+	@Override
+	protected void onPause() {
+		dataSource.close();
+		super.onPause();
+	}
 }
