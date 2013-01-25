@@ -5,7 +5,7 @@
     tools:context=".MainActivity" >
 
     <Button
-        android:id="@+id/buttonIn"
+        android:id="@+id/buttonEntry"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="0.5"

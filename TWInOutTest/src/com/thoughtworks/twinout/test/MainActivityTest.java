@@ -15,13 +15,8 @@ public class MainActivityTest extends
 
 	public void testEntryButtonName() throws Exception {
 		MainActivity activity = getActivity();
-		Button button= (Button) activity.findViewById(R.id.buttonIn);
-		assertEquals("IN", button.getText());
+		Button buttonEntry= (Button) activity.findViewById(R.id.buttonEntry);
+		assertEquals(getActivity().getResources().getText(R.string.label_button_in), buttonEntry.getText());
 	}
 	
-	// public void testRegisteringIN() throws Exception {
-	// Button button = (Button)activity.findViewById(R.id.inButton);
-	// button.performClick();
-	// String message = activity.
-	// }
 }

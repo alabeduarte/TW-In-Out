@@ -2,10 +2,12 @@ package com.thoughtworks.twinout.test;
 
 import java.util.Date;
 
+import android.app.Activity;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+import com.thoughtworks.twinout.R;
 import com.thoughtworks.twinout.ViewHelper;
 
 public class TimeInfoPage {
@@ -14,12 +16,12 @@ public class TimeInfoPage {
 	private DatePicker datePicker;
 	private TimePicker timePicker;
 	
-	public TimeInfoPage(Button buttonConfirmation, DatePicker datePicker, TimePicker timePicker) {
-		this.buttonConfirmation = buttonConfirmation;
-		this.datePicker = datePicker;
-		this.timePicker = timePicker;
+	public TimeInfoPage(Activity activity) {
+		buttonConfirmation = (Button) activity.findViewById(R.id.buttonConfirm);
+		datePicker = (DatePicker) activity.findViewById(R.id.datePicker);
+		timePicker = (TimePicker) activity.findViewById(R.id.timePicker);
 	}
-
+	
 	public Button getButtonConfirmation() {
 		return buttonConfirmation;
 	}
@@ -35,5 +37,5 @@ public class TimeInfoPage {
 	public Date getInputDate() {
 		return ViewHelper.getInputDate(datePicker, timePicker);
 	}
-	
+
 }

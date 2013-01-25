@@ -15,7 +15,7 @@ public final class R {
     }
     public static final class id {
         public static final int buttonConfirm=0x7f070003;
-        public static final int buttonIn=0x7f070000;
+        public static final int buttonEntry=0x7f070000;
         public static final int datePicker=0x7f070001;
         public static final int menu_settings=0x7f070004;
         public static final int timePicker=0x7f070002;

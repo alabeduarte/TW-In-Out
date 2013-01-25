@@ -3,7 +3,6 @@ package com.thoughtworks.twinout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,8 +15,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		Button button = (Button) findViewById(R.id.buttonIn);
-		button.setOnClickListener(this);
+		Button buttonEntry = (Button) findViewById(R.id.buttonEntry);
+		buttonEntry.setOnClickListener(this);
 	}
 
 	@Override
@@ -28,7 +27,6 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		Log.d("TWINOUT", "Clicou no botão!!!");
 		Intent intent = new Intent(this, TimeInfoActivity.class);
 		startActivity(intent);
 	}
