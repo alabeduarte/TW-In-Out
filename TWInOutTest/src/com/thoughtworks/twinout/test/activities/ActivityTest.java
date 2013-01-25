@@ -1,4 +1,4 @@
-package com.thoughtworks.twinout.test;
+package com.thoughtworks.twinout.test.activities;
 
 import android.app.Activity;
 import android.app.Instrumentation;
@@ -33,8 +33,7 @@ public class ActivityTest<T extends Activity> extends ActivityInstrumentationTes
 		instrumentation.startActivitySync(intent);
 	}
 
-	protected Instrumentation.ActivityMonitor createMonitor(
-			Class<? extends Activity> clazz) {
+	protected Instrumentation.ActivityMonitor createMonitor(Class<? extends Activity> clazz) {
 		return instrumentation.addMonitor(clazz.getName(), null, false);
 	}
 

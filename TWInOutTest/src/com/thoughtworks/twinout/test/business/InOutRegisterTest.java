@@ -1,4 +1,4 @@
-package com.thoughtworks.twinout.test.db;
+package com.thoughtworks.twinout.test.business;
 
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.mock;

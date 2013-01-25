@@ -1,15 +1,14 @@
 package com.thoughtworks.twinout;
 
-import com.thoughtworks.twinout.db.TimeCardDataSource;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+
+import com.thoughtworks.twinout.db.TimeCardDataSource;
 
 public class TimeInfoActivity extends Activity implements OnClickListener {
 
@@ -27,15 +26,15 @@ public class TimeInfoActivity extends Activity implements OnClickListener {
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(View view) {
 		InOutRegister register = new InOutRegister(dataSource);
 		
 		DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
 		TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
 		
 		register.registerInAt(ViewHelper.getInputDate(datePicker, timePicker));
-		Intent intent = new Intent(this, MainActivity.class);
-		startActivity(intent);
+		//Intent intent = new Intent(this, MainActivity.class);
+		//startActivity(intent);
 	}
 
 	@Override

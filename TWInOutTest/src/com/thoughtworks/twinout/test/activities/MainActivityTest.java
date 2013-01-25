@@ -1,4 +1,4 @@
-package com.thoughtworks.twinout.test;
+package com.thoughtworks.twinout.test.activities;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
