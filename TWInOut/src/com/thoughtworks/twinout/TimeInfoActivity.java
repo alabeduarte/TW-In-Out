@@ -1,6 +1,7 @@
 package com.thoughtworks.twinout;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,6 +34,9 @@ public class TimeInfoActivity extends Activity implements OnClickListener {
 		TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
 		
 		register.registerInAt(ViewHelper.getInputDate(datePicker, timePicker));
+		
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
 	}
 
 	@Override
