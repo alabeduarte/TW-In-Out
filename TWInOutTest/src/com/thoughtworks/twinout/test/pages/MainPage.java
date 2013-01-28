@@ -39,7 +39,6 @@ public class MainPage {
 		click(buttonEntry);
 
 		TimeInfoActivity timeInfoActivity = (TimeInfoActivity) this.instrumentationHelper.getCurrentActivity(this.monitor);
-		timeInfoActivity.finish();
 		return new TimeInfoPage(timeInfoActivity);
 	}
 	

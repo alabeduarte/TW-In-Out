@@ -36,15 +36,14 @@ public class TimeInfoActivityTest extends ActivityInstrumentationTestCase2<TimeI
 	public void testShouldAddNewTimeCard() {
 		MainPage mainPage = MainPage.create(getInstrumentation());
 		setActivity(mainPage.getActivity());
+		
 		TimeInfoPage timeInfoPage = mainPage.goToTimeInfoPage().onDate(2013, Calendar.JANUARY, 2).atTime(9, 0);
 		setActivity(timeInfoPage.getActivity());
 		
 		timeInfoPage.confirm();
 		
 		TimeCard timeCard = dataSource.getLastInDate();
-		assertNotNull(timeCard);
-		assertEquals(timeInfoPage.getInputDate(), timeCard.getDateTime());
-		assertEquals(TimeCardType.IN, timeCard.getType());
+		assertPresenceOf(timeCard, timeInfoPage);
 	}
 	
 //	public void testTransitionOfTheTimeCardInfoToMainScreen() {
@@ -58,4 +57,10 @@ public class TimeInfoActivityTest extends ActivityInstrumentationTestCase2<TimeI
 //		assertEquals(mainActivity.getResources().getText(R.string.label_button_out), buttonEntry.getText());
 //	}
 
+	private void assertPresenceOf(TimeCard timeCard, TimeInfoPage timeInfoPage) {
+		assertNotNull(timeCard);
+		assertEquals(timeInfoPage.getInputDate(), timeCard.getDateTime());
+		assertEquals(TimeCardType.IN, timeCard.getType());
+	}
+	
 }

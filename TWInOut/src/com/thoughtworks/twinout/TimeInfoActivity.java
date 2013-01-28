@@ -33,8 +33,6 @@ public class TimeInfoActivity extends Activity implements OnClickListener {
 		TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
 		
 		register.registerInAt(ViewHelper.getInputDate(datePicker, timePicker));
-		//Intent intent = new Intent(this, MainActivity.class);
-		//startActivity(intent);
 	}
 
 	@Override
