@@ -12,38 +12,34 @@ import com.thoughtworks.twinout.ViewHelper;
 
 public class TimeInfoPage {
 
-	private DatePicker datePicker;
-	private TimePicker timePicker;
-	
 	private final Solo solo;
 	
 	public TimeInfoPage(Solo solo) {
 		this.solo = solo;
-		TimeInfoActivity activity = (TimeInfoActivity) this.solo.getCurrentActivity();
-		datePicker = (DatePicker) activity.findViewById(R.id.datePicker);
-		timePicker = (TimePicker) activity.findViewById(R.id.timePicker);
 	}
 	
 	public DatePicker getDatePicker() {
-		return datePicker;
+		TimeInfoActivity activity = (TimeInfoActivity) this.solo.getCurrentActivity();
+		return (DatePicker) activity.findViewById(R.id.datePicker);
 	}
 
 	public TimePicker getTimePicker() {
-		return timePicker;
+		TimeInfoActivity activity = (TimeInfoActivity) this.solo.getCurrentActivity();
+		return (TimePicker) activity.findViewById(R.id.timePicker);
 	}
 	
 	public TimeInfoPage onDate(int year, int monthOfYear, int dayOfYear) {
-		this.solo.setDatePicker(this.datePicker, year, monthOfYear, dayOfYear);
+		this.solo.setDatePicker(this.getDatePicker(), year, monthOfYear, dayOfYear);
 		return this;
 	}
 	
 	public TimeInfoPage atTime(int hour, int minute) {
-		this.solo.setTimePicker(this.timePicker, hour, minute);
+		this.solo.setTimePicker(this.getTimePicker(), hour, minute);
 		return this;
 	}
 	
 	public Date getInputDate() {
-		return ViewHelper.getInputDate(datePicker, timePicker);
+		return ViewHelper.getInputDate(getDatePicker(), getTimePicker());
 	}
 	
 	public void confirm() {
